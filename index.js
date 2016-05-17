@@ -9,9 +9,6 @@ slack = new Slack(WEBHOOK_URL,{
   icon_emoji: ":robot_face:"
 });
 
-var pg = require('pg');
-var connectionString = process.env.DATABASE_URL;
-
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
@@ -20,11 +17,16 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+var storage = require("./storage.js");
+storage.admin.init.interns();
+storage.admin.init.users();
+
 app.get('/', function(request, response) {
-  response.render('pages/index');
+  response.send('Points for J85A Interns \n Owner: dvoegeli@mitre.org');
 });
 
 app.post('/', function(request, response) {
+  console.log(request.body);
   response.send({
     "response_type": "ephemeral",
     "text": "Here are the currently open tickets:",
@@ -36,14 +38,3 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-
-var client = new pg.Client(connectionString);
-client.connect();
-var query = client.query(
-  "CREATE TABLE IF NOT EXISTS interns (" + 
-    "name varchar(45) NOT NULL, " +     
-    "points integer NOT NULL DEFAULT '0', " + 
-    "PRIMARY KEY (interns_id) " + 
-  ")"
-);
-query.on('end', function() { client.end(); });
