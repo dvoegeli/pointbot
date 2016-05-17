@@ -36,12 +36,19 @@ var api = [
    'pattern': ['list']},
 ]
 
-function execute(action){
-  var command = _.find(api, function(command){
-    return _.isEqual(action, command.pattern);
+function execute(){
+  var action = _.find(api, function(command){
+    var truncatedTokens = _.slice(tokens, 0, command.pattern.length);
+    return _.isEqual(truncatedTokens, command.pattern);
   });
-  var params = _.slice(tokens, command.pattern.length, tokens.length)
-  command.storage.call(this, params);
+
+  if(action) {
+    var params = _.slice(tokens, action.pattern.length, tokens.length);
+    action.storage.call(this, params);
+    return "tada"
+  } else {
+    return "does not compute"
+  }
 }
 
 function tokenize(string){
@@ -52,6 +59,6 @@ function tokenize(string){
 module.exports = {
 	response: function(string){
 		tokenize(string);
-    execute(tokens);
+    return execute();
 	}
 }
