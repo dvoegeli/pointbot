@@ -1,3 +1,12 @@
+var WEBHOOK_URL = process.env.MY_SLACK_WEBHOOK_URL;
+Slack = require('node-slackr');
+slack = new Slack(WEBHOOK_URL,{
+  channel: "#pointbot-testing",
+  username: "point-bot",
+  icon_emoji: ":robot_face:"
+});
+
+
 var conString = process.env.DATABASE_URL;
 conString += "?ssl=true";
 
@@ -220,6 +229,7 @@ module.exports = {
       query.on("end", function(result) {
         client.end();
         console.log(JSON.stringify(result.rows, null, "  ") + "\n");
+        slack.notify(JSON.stringify(result.rows, null, "  "))
       });
     }
   }
