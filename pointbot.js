@@ -56,10 +56,19 @@ function tokenize(string){
 }
 
 
+
+
 module.exports = {
 	response: function(string){
 		tokenize(string);
     console.log(tokens);
     return execute();
-	}
+	}, 
+  formatList: function(interns){
+    var list = 'POINTS\n';
+    _.forEach(interns, function(intern){
+      list += intern.name + ': ' + intern.points + '\n';
+    });
+    return list;
+  }
 }
