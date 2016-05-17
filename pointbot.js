@@ -56,8 +56,6 @@ function tokenize(string){
 }
 
 
-
-
 module.exports = {
 	response: function(string){
 		tokenize(string);
