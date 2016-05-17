@@ -22,9 +22,10 @@ app.get('/', function(request, response) {
 });
 
 app.post('/', function(request, response) {
-  /*response.render({
-    "text": "It's 80 degrees right now."
-  });*/
+  response.send({
+    "response_type": "ephemeral",
+    "text": "Here are the currently open tickets:",
+  });
   slack.notify("Message"); //without callback
 });
 
