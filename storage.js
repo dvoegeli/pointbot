@@ -231,7 +231,7 @@ module.exports = {
       query.on("end", function(result) {
         client.end();
         console.log(JSON.stringify(result.rows, null, "  ") + "\n");
-        slack.notify(pointbot.formatList(result.rows))
+        slack.notify(JSON.stringify(result.rows, null, "  "))
       });
     }
   }
