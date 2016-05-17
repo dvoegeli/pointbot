@@ -44,7 +44,7 @@ function execute(){
 
   if(action) {
     var params = _.slice(tokens, action.pattern.length, tokens.length);
-    action.storage.call(this, params);
+    action.storage.apply(this, params);
     return "Action successfully executed."
   } else {
     return "ERROR: No such action to execute."
