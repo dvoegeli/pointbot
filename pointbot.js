@@ -55,11 +55,20 @@ function tokenize(string){
 	tokens = string.split(' ');
 }
 
+function formatList(interns){
+  var list = 'POINTS\n';
+  _.forEach(interns, function(intern){
+    list += intern.name + ': ' + intern.points + '\n';
+  });
+  return list;
+}
+
 
 module.exports = {
 	response: function(string){
 		tokenize(string);
     console.log(tokens);
     return execute();
-	}
+	},
+  format: format,
 }
