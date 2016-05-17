@@ -63,7 +63,7 @@ module.exports = {
           console.log('Dropped Intern ' + name);
         });
       },
-      dropEveryone: function() {
+      megadrop: function() {
         var pg = require('pg');
         var client = new pg.Client(conString);
         client.connect();
@@ -87,6 +87,19 @@ module.exports = {
       },
     },
     users: {
+      list: function(){
+        var pg = require('pg');
+        var client = new pg.Client(conString);
+        client.connect();
+        var query = client.query("SELECT * FROM users");
+        query.on("row", function(row, result) {
+          result.addRow(row);
+        });
+        query.on("end", function(result) {
+          client.end();
+          console.log(JSON.stringify(result.rows, null, "  ") + "\n");
+        });
+      },
       add: function(name) {
         var pg = require('pg');
         var client = new pg.Client(conString);
@@ -110,7 +123,7 @@ module.exports = {
           console.log('Dropped User ' + name);
         });
       },
-      dropEveryone: function() {
+      megadrop: function() {
         var pg = require('pg');
         var client = new pg.Client(conString);
         client.connect();
@@ -183,7 +196,7 @@ module.exports = {
         console.log('Took Intern Points for ' + name);
       });
     },
-    resetEveryone: function(name) {
+    megareset: function(name) {
       var pg = require('pg');
       var client = new pg.Client(conString);
       client.connect();
@@ -196,7 +209,7 @@ module.exports = {
       });
     },
   },
-  all: {
+  anyone: {
     list: function(){
       var pg = require('pg');
       var client = new pg.Client(conString);
