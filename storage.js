@@ -1,5 +1,3 @@
-var pointbot = require("./pointbot.js");
-
 var WEBHOOK_URL = process.env.MY_SLACK_WEBHOOK_URL;
 Slack = require('node-slackr');
 slack = new Slack(WEBHOOK_URL,{
@@ -231,8 +229,14 @@ module.exports = {
       query.on("end", function(result) {
         client.end();
         console.log(JSON.stringify(result.rows, null, "  ") + "\n");
-        //slack.notify(JSON.stringify(result.rows, null, "  "));
-        console.log( pointbot.formatList(result.rows) )
+
+        var list = 'POINTS\n';
+        _.forEach(result.rows, function(intern){
+          list += intern.name + ': ' + intern.points + '\n';
+        });
+
+        slack.notify(list)
+
       });
     }
   }
