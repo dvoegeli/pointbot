@@ -59,6 +59,7 @@ function tokenize(string){
 module.exports = {
 	response: function(string){
 		tokenize(string);
+    console.log(tokens);
     return execute();
 	}
 }

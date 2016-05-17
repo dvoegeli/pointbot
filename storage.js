@@ -159,6 +159,7 @@ module.exports = {
   },
   users: {
     give: function(name, points) {
+      console.log(name + ', ' + points)
       var pg = require('pg');
       var client = new pg.Client(conString);
       client.connect();
