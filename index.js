@@ -25,12 +25,15 @@ var storage = require("./storage.js");
 storage.admin.init.interns();
 storage.admin.init.users();
 
+var pointbot = require("./pointbot.js");
+
 app.get('/', function(request, response) {
   response.send('Points for J85A Interns \n Owner: dvoegeli@mitre.org');
 });
 
 app.post('/', function(request, response) {
   console.log(request.body);
+  console.log(pointbot.response(request.body.text));
   response.send({
     "response_type": "ephemeral",
     "text": "Here are the currently open tickets:",
