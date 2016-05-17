@@ -57,7 +57,7 @@ module.exports = {
         var pg = require('pg');
         var client = new pg.Client(conString);
         client.connect();
-        var query = client.query("DELETE FROM interns WHERE name=" + name);
+        var query = client.query("DELETE FROM interns WHERE name= '" + name + "'"); 
         query.on("end", function(result) {
           client.end();
           console.log('Dropped Intern ' + name);
@@ -77,9 +77,7 @@ module.exports = {
         var pg = require('pg');
         var client = new pg.Client(conString);
         client.connect();
-        var query = client.query(
-          "UPDATE interns SET response = '" + response + "' WHERE name = '" + name + "'"
-        );
+        var query = client.query("UPDATE interns SET response = '" + response + "' WHERE name = '" + name + "'");
         query.on("end", function(result) {
           client.end();
           console.log('Added Response for Intern ' + name);
