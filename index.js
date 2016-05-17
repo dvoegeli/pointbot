@@ -32,13 +32,12 @@ app.get('/', function(request, response) {
 });
 
 app.post('/', function(request, response) {
-  console.log(request.body);
   console.log(pointbot.response(request.body.text));
   response.send({
     "response_type": "ephemeral",
-    "text": "Here are the currently open tickets:",
+    "text": "acknowledged",
   });
-  slack.notify("Message"); //without callback
+  //slack.notify("Message"); //without callback
 });
 
 app.listen(app.get('port'), function() {

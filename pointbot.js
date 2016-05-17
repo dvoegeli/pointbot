@@ -45,9 +45,9 @@ function execute(){
   if(action) {
     var params = _.slice(tokens, action.pattern.length, tokens.length);
     action.storage.call(this, params);
-    return "tada"
+    return "Action successfully executed."
   } else {
-    return "does not compute"
+    return "ERROR: No such action to execute."
   }
 }
 
