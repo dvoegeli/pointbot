@@ -9,6 +9,9 @@ slack = new Slack(WEBHOOK_URL,{
   icon_emoji: ":robot_face:"
 });
 
+var pg = require('pg');
+var connectionString = process.env.DATABASE_URL;
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
@@ -34,3 +37,13 @@ app.listen(app.get('port'), function() {
 });
 
 
+var client = new pg.Client(connectionString);
+client.connect();
+var query = client.query(
+  "CREATE TABLE IF NOT EXISTS interns (" + 
+    "name varchar(45) NOT NULL, " +     
+    "points integer NOT NULL DEFAULT '0', " + 
+    "PRIMARY KEY (interns_id) " + 
+  ")"
+);
+query.on('end', function() { client.end(); });
