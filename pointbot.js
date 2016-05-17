@@ -70,5 +70,5 @@ module.exports = {
     console.log(tokens);
     return execute();
 	},
-  format: format,
+  formatList: formatList,
 }
