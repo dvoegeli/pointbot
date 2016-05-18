@@ -224,7 +224,7 @@ module.exports = {
       var pg = require('pg');
       var client = new pg.Client(conString);
       client.connect();
-      var query = client.query("SELECT * FROM interns");
+      var query = client.query("SELECT * FROM interns ORDER BY points DESC");
       query.on("row", function(row, result) {
         result.addRow(row);
       });
@@ -233,8 +233,12 @@ module.exports = {
         console.log(JSON.stringify(result.rows, null, "  ") + "\n");
 
         var list = 'POINTS\n';
-        _.forEach(result.rows, function(intern){
-          list += intern.name + ': ' + intern.points + '\n';
+        _.forEach(result.rows, function(intern, index){
+          var name = _.padEnd(_.capitalize(intern.name), 20);
+          list += name + ': ' + intern.points;
+          if( (index % 2) == 1 ){
+            list += '\n';
+          }
         });
 
         slack.notify(list)
