@@ -2,7 +2,7 @@ var storage = require("./storage.js");
 var _ = require('lodash');
 
 var tokens;
-var pw = { admin: 'daav', users: 'tw' };
+var pw = { admin: process.env.ADMIN_PASS, users: process.env.USER_PASS };
 
 var api = [
   {'storage': storage.admin.interns.add,
