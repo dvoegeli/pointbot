@@ -1,39 +1,42 @@
-# node-js-getting-started
+# POINT-BOT
+Keep track of points for our department's interns
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+#API
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+##anyone
+/points list
 
-## Running Locally
+##user
+/points [user pass] interns reset [name]
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+/points [user pass] interns megareset 
 
-```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+/points [user pass] give [name] [amount]
 
-## Deploying to Heroku
+/points [user pass] take [name] [amount] 
 
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-or
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+##admin
 
-## Documentation
+####interns
+/points [admin pass] interns add [name]
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
+/points [admin pass] interns drop [name]
 
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+/points [admin pass] interns megadrop
+
+/points [admin pass] interns response [name] [message]
+
+####users
+/points [admin pass] users list
+
+/points [admin pass] users add [name]
+
+/points [admin pass] users drop [name]
+
+/points [admin pass] users megadrop
+
+/points [admin pass] users award [name] [user|intern|(gives|takes)|amount|(.*)*]
+
+/points [admin pass] users response [name] [message]
