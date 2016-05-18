@@ -234,8 +234,7 @@ module.exports = {
 
         var list = 'POINTS\n';
         _.forEach(result.rows, function(intern, index){
-          var name = _.padEnd(_.capitalize(intern.name), 20);
-          list += name + ': ' + intern.points;
+          list += _.padEnd( (_.capitalize(intern.name) + ': ' + intern.points ), 20);
           if( (index % 2) == 1 ){
             list += '\n';
           }
