@@ -224,7 +224,7 @@ module.exports = {
       var pg = require('pg');
       var client = new pg.Client(conString);
       client.connect();
-      var query = client.query("SELECT * FROM interns ORDER BY points DESC");
+      var query = client.query("SELECT * FROM interns ORDER BY points ASC");
       query.on("row", function(row, result) {
         result.addRow(row);
       });
