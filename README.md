@@ -37,6 +37,6 @@ Keep track of points for our department's interns
 
 /points [admin pass] users megadrop
 
-/points [admin pass] users award [name] [user|intern|(gives|takes)|amount|(.*)*]
+/points [admin pass] users award [name] [user|intern|(gives|takes)|amount|(.&ast;)&ast;]
 
 /points [admin pass] users response [name] [message]
