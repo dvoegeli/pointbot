@@ -1,12 +1,12 @@
 # POINT-BOT
 Keep track of points for our department's interns
 
-#API
+# API
 
-##anyone
+## anyone
 /points list
 
-##user
+## user
 /points [user pass] interns reset [name]
 
 /points [user pass] interns megareset 
@@ -17,9 +17,9 @@ Keep track of points for our department's interns
 /points [user pass] take [name] [amount] 
 
 
-##admin
+## admin
 
-####interns
+#### interns
 /points [admin pass] interns add [name]
 
 /points [admin pass] interns drop [name]
@@ -28,7 +28,7 @@ Keep track of points for our department's interns
 
 /points [admin pass] interns response [name] [message]
 
-####users
+#### users
 /points [admin pass] users list
 
 /points [admin pass] users add [name]
