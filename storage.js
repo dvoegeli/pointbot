@@ -1,9 +1,10 @@
 var _ = require('lodash');
 
 var WEBHOOK_URL = process.env.MY_SLACK_WEBHOOK_URL;
+var SLACK_CHANNEL = process.env.SLACK_CHANNEL;
 Slack = require('node-slackr');
 slack = new Slack(WEBHOOK_URL,{
-  channel: "#intern-coordination",
+  channel: SLACK_CHANNEL,
   username: "point-bot",
   icon_emoji: ":robot_face:"
 });
